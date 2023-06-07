@@ -1,3 +1,3 @@
 #!/bin/bash
-# What each script is doing?
+ # What each script is doing?
 
