@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -t | egrep -v '^d' | head -n 10
