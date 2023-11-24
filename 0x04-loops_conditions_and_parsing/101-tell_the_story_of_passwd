@@ -3,7 +3,7 @@
 
 passwd_file="/etc/passwd"
 
-while IFS=: read -r username _ userid groupid _ homedir shell
+while IFS=: read -r username _ _ groupid _ homedir shell
 do
     user_info=$(finger "$username" 2>/dev/null | grep -E "Name:|Directory:|Shell:")
 
