@@ -11,8 +11,7 @@ sigterm_handler() {
 
 trap 'sigterm_handler' SIGTERM
 
-a=0
-while [ $a -lt 10 ]; do
+while true; do
     echo "To infinity and beyond"
     sleep 2
 done
