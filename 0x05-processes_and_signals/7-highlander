@@ -4,12 +4,7 @@
 # With a sleep 2 in between each iteration
 # I am invincible!!! when receiving a SIGTERM signal
 
-sigterm_handler() {
-    echo "I am invincible!!!"
-    exit 0
-}
-
-trap 'sigterm_handler' SIGTERM
+trap 'echo "I am invincible!!!"' 15
 
 while true; do
     echo "To infinity and beyond"
