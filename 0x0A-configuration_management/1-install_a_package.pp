@@ -1,3 +1,4 @@
+#!/usr/bin/pup
 # Define a class to manage the installation of Flask
 
 package {'flask':
