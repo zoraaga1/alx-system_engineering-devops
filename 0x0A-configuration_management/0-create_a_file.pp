@@ -6,9 +6,3 @@
     owner   => 'www-data',
     group   => 'www-data',
   }
-
-
-# Include the class in the main node configuration
-node 'example_node' {
-  include create_school_file
-}
