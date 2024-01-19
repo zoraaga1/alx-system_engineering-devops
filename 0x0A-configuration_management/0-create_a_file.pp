@@ -1,9 +1,3 @@
-# Define a class to manage the creation of the file
-class create_school_file {
-  # Ensure /tmp/school directory exists
-  file { '/tmp/school':
-    ensure => directory,
-  }
 
   # Create the file with specified content, permissions, owner, and group
   file { '/tmp/school/school':
@@ -13,7 +7,7 @@ class create_school_file {
     owner   => 'www-data',
     group   => 'www-data',
   }
-}
+
 
 # Include the class in the main node configuration
 node 'example_node' {
