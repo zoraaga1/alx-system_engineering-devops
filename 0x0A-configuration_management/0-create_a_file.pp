@@ -1,5 +1,4 @@
-
-  # Create the file with specified content, permissions, owner, and group
+# Create the file with specified content, permissions, owner, and group
   file { '/tmp/school/school':
     ensure  => file,
     content => 'I love Puppet',
