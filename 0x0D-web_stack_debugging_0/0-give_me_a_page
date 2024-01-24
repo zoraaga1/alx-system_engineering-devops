@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Bash script to run Apache on
 
-service apache2 star
-
+/etc/init.d/apache2 start
