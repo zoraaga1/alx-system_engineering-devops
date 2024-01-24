@@ -1,38 +1,30 @@
-#!/bin/bash
-# Bash script to configure Nginx for custom 404 page
+#!/usr/bin/env bash
+# Bash script that configure 404 page
 
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get install -y nginx
 
-sudo service nginx start
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
+touch /etc/nginx/html/404.html
+echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
 
-echo "server {
-    listen 80 default_server;
+printf %s "server {
+    listen 80;
     listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm;
-
-    server_name _;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
 
     location /redirect_me {
-        return 301 http://example.com/new_page; # Change to your desired redirection URL
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
 
-    error_page 404 /custom_404.html;
-    location = /custom_404.html {
-        internal;
-        root /var/www/html;
-        echo 'Ceci n'est pas une page';
-        add_header Content-Type text/plain;
-    }
-
-    location / {
-        echo 'Hello World!';
-        add_header Content-Type text/plain;
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
     }
 }" > /etc/nginx/sites-available/default
 
-echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
-
-service nginx reload
+service nginx restart
