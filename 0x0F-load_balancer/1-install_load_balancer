@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Install and configure HAproxy for load balancing
 
-# Install HAproxy
 sudo apt-get update
 sudo apt-get install -y haproxy
 
-# Configure HAproxy
 echo "
 frontend web
     bind *:80
@@ -19,5 +17,4 @@ backend webservers
     server web-02 54.89.16.211:80 check
 " | sudo tee /etc/haproxy/haproxy.cfg
 
-# Restart HAproxy to apply changes
 sudo service haproxy restart
