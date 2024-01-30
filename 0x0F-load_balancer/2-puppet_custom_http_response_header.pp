@@ -1,29 +1,20 @@
 # Puppet script to add custom HTTP response header
 
-package { 'nginx':
-  ensure => installed,
+exec { 'update':
+  command  => 'sudo apt-get update',
+  provider => shell,
 }
-
-file { '/etc/nginx/sites-available/default':
+-> package {'nginx':
   ensure => present,
-  content => "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    server_name _;
-
-    location / {
-        add_header X-Served-By $hostname;
-        # other configurations...
-    }
-
-    # other server configurations...
 }
-",
+-> file_line { 'header line':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  line   => "	location / {
+  add_header X-Served-By ${hostname};",
+  match  => '^\tlocation / {',
 }
-
-service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => File['/etc/nginx/sites-available/default'],
+-> exec { 'restart service':
+  command  => 'sudo service nginx restart',
+  provider => shell,
 }
