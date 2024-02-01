@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# This script displays information about subdomains for a given domain.
+
+audit_subdomain() {
+    local domain="$1"
+    local subdomain="$2"
+
+    if [ -z "$subdomain" ]; then
+        subdomains=("www" "lb-01" "web-01" "web-02")
+    else
+        subdomains=("$subdomain")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        record_type=$(dig +short -t ANY "$sub.$domain" | awk 'NR==1{print $4}')
+        destination=$(dig +short "$sub.$domain")
+
+        if [ -z "$destination" ]; then
+            echo "The subdomain $sub does not exist for $domain"
+        else
+            echo "The subdomain $sub is a $record_type record and points to $destination"
+        fi
+    done
+}
+
+if [ "$#" -eq 1 ]; then
+    audit_subdomain "$1"
+elif [ "$#" -eq 2 ]; then
+    audit_subdomain "$1" "$2"
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
