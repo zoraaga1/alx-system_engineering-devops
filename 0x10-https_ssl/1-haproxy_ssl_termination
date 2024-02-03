@@ -47,5 +47,5 @@ frontend clickviral-frontend-https
 
 backend clickviral-backend
         balance roundrobin
-        server 151666-web-01 100.25.190.21:80 check
-        server 151666-web-02 54.160.77.90:80 check
+        server 421221-web-01 18.207.1.146:80 check
+        server 421221-web-02 54.89.16.211:80 check
