@@ -1,5 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Bash script run the whoami command
-# under the user passed as an argument
 
 sudo -u "$1" whoami
