@@ -2,5 +2,6 @@
     "files.associations": {
         "stdlib.h": "c",
         "unistd.h": "c"
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }
