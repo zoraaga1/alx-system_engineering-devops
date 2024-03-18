@@ -24,7 +24,7 @@ frontend www-http
     default_backend www-backend
 
 frontend www-https
-    bind   0.0.0.0:443 ssl crt /etc/haproxy/certs/www.zoraaga.tech.pem
+    bind   0.0.0.0:443 ssl crt /etc/letsencrypt/live/www.zoraaga.tech/test3.pem
     reqadd X-Forwarded-Proto:\ https
     acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
@@ -33,8 +33,8 @@ frontend www-https
 backend www-backend
     balance  roundrobin
     redirect scheme https if !{ ssl_fc }
-    server 421221-web-01 18.207.1.146:80 check
-    server 421221-web-02 54.89.16.211:80 check
+    server 421221-web-01 54.236.41.139:80 check
+    server 421221-web-02 100.25.164.131:80 check
 
 backend letsencrypt-backend
     server letsencrypt 127.0.0.1:54321

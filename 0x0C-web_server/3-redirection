@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bih
 # A bash script taht configures the nginx server
 
 sudo su root - &&\
@@ -9,3 +9,4 @@ sudo echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html ;\
 
 sudo sed -i '/listen 80 default_server/a        rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default ;\
 sudo service nginx restart
+n/env bas
