@@ -6,6 +6,7 @@ to get the number of subscribers for a given subreddit.
 """
 
 import requests
+from sys import argv
 
 
 def number_of_subscribers(subreddit):
@@ -27,3 +28,7 @@ def number_of_subscribers(subreddit):
         return data["data"]["subscribers"]
     else:
         return 0
+
+
+if __name__ == "__main__":
+    number_of_subscribers(argv[1])
